@@ -71,10 +71,10 @@ setup(
     author_email="no-reply@google.com",
     url="https://github.com/tensorflow/models/hyperparams/",
     license="Apache 2.0",
-    packages=find_packages(),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     exclude_package_data={"": ["*_test.py",],},  # noqa
     install_requires=["six", "dataclasses", "typing", "pyyaml"],
-    # dependency_links=dependency_links,
     tests_require=["absl", "tensorflow>=2.1.0"],
     python_requires=">=3.7",
 )
