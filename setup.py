@@ -13,8 +13,8 @@
 # limitations under the License.
 # ==============================================================================
 """Sets up params."""
-import datetime
-import os
+# import datetime
+# import os
 import sys
 
 from setuptools import find_packages, setup
@@ -35,32 +35,32 @@ if "--project_name" in sys.argv:
     sys.argv.pop(project_name_idx)
 
 
-def _get_requirements():
-    """Parses requirements.txt file."""
-    install_requires_tmp = []
-    dependency_links_tmp = []
-    with open(
-        os.path.join(os.path.dirname(__file__), "../requirements.txt"), "r"
-    ) as f:
-        for line in f:
-            package_name = line.strip()
-            if package_name.startswith("-e "):
-                dependency_links_tmp.append(package_name[3:].strip())
-            else:
-                install_requires_tmp.append(package_name)
-    return install_requires_tmp, dependency_links_tmp
+# def _get_requirements():
+#     """Parses requirements.txt file."""
+#     install_requires_tmp = []
+#     dependency_links_tmp = []
+#     with open(
+#         os.path.join(os.path.dirname(__file__), "../requirements.txt"), "r"
+#     ) as f:
+#         for line in f:
+#             package_name = line.strip()
+#             if package_name.startswith("-e "):
+#                 dependency_links_tmp.append(package_name[3:].strip())
+#             else:
+#                 install_requires_tmp.append(package_name)
+#     return install_requires_tmp, dependency_links_tmp
 
 
-install_requires, dependency_links = _get_requirements()
+# install_requires, dependency_links = _get_requirements()
 
-if project_name == "tf-models-nightly":
-    version += ".dev" + datetime.datetime.now().strftime("%Y%m%d")
-    install_requires.append("tf-nightly")
-else:
-    install_requires.append("tensorflow>=2.1.0")
+# if project_name == "tf-models-nightly":
+#     version += ".dev" + datetime.datetime.now().strftime("%Y%m%d")
+#     install_requires.append("tf-nightly")
+# else:
+#     install_requires.append("tensorflow>=2.1.0")
 
-print("install_requires: ", install_requires)
-print("dependency_links: ", dependency_links)
+# print("install_requires: ", install_requires)
+# print("dependency_links: ", dependency_links)
 
 setup(
     name=project_name,
@@ -73,8 +73,8 @@ setup(
     license="Apache 2.0",
     packages=find_packages(),
     exclude_package_data={"": ["*_test.py",],},  # noqa
-    install_requires=install_requires,
-    dependency_links=dependency_links,
+    install_requires=["six", "dataclasses", "typing", "pyyaml]"],
+    # dependency_links=dependency_links,
     tests_require=["absl", "tensorflow>=2.1.0"],
     python_requires=">=3.7",
 )
